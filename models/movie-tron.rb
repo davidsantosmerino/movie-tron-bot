@@ -12,7 +12,7 @@ class MovieTron
         case message
         when Telegram::Bot::Types::InlineQuery
           search = FilmAffinity::Search.new(message.query)
-          results = search.movies.map do |movie|
+          results = search.movies[0..5].map do |movie|
             Telegram::Bot::Types::InlineQueryResultArticle.new(
               id: movie.id,
               title: movie.title,
@@ -22,9 +22,9 @@ class MovieTron
             )
           end
 
-          bot.api.answer_inline_query(inline_query_id: message.id, results: results)
-        when Telegram::Bot::Types::Message
-          bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}!")
+          bot.api.answer_inline_query(inline_query_id: message.id, results: results) unless results.empty?
+        # when Telegram::Bot::Types::Message
+        #   bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}!")
         end
       end
     end
