@@ -1,5 +1,6 @@
 require 'telegram/bot'
 require 'filmaffinity'
+require_relative 'extensions/filmaffinity/movie'
 require 'dotenv'
 
 Dotenv.load
@@ -17,7 +18,7 @@ class MovieTron
             Telegram::Bot::Types::InlineQueryResultArticle.new(
               id: movie.id,
               title: movie.title,
-              input_message_content: Telegram::Bot::Types::InputTextMessageContent.new(message_text: "#{movie.title}\n#{movie.sinopsis}"),
+              input_message_content: Telegram::Bot::Types::InputTextMessageContent.new(message_text: movie.markdown_summary, parse_mode: 'Markdown'),
               description: movie.sinopsis,
               thumb_url: movie.poster
             )
