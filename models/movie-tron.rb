@@ -1,10 +1,11 @@
-require "telegram/bot"
-require "filmaffinity"
-require "./.config/config"
-require "pry"
+require 'telegram/bot'
+require 'filmaffinity'
+require 'dotenv'
+
+Dotenv.load
 
 class MovieTron
-  TOKEN = Config.movie_tron_token
+  TOKEN = ENV['TELEGRAM_BOT_TOKEN']
 
   def run
     Telegram::Bot::Client.run(TOKEN, logger: Logger.new($stdout)) do |bot|

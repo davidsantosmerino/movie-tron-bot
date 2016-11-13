@@ -1,4 +1,5 @@
-source "https://rubygems.org/"
+source 'https://rubygems.org/'
 
-gem "telegram-bot-ruby"
-gem "filmaffinity"
+gem 'dotenv'
+gem 'telegram-bot-ruby'
+gem 'filmaffinity'
