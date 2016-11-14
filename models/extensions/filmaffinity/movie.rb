@@ -2,10 +2,9 @@ module Extensions
   module FilmAffinity
     module Movie
       def markdown_summary
-        "*#{title} (#{year})* \n"\
-        "⭐️ #{rating}\n"\
+        "*#{title} (#{year})* #{rating}⭐️\n"\
         "🎬 #{director}\n"\
-        "👥 #{cast.join(', ')} \n\n"\
+        "👥 #{cast.join(', ')}\n\n"\
         "#{sinopsis}"
       end
     end
